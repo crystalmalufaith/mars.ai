@@ -103,10 +103,14 @@
 </script>
 
 <script>
-const user = JSON.parse(localStorage.getItem('currentUser'));
-if (!user) {
-  window.location.href = 'sign-in.html';
-}
+// TEMPORARY: Bypass login for testing
+// const user = JSON.parse(localStorage.getItem('currentUser'));
+// if (!user) {
+//   window.location.href = 'sign-in.html';
+// }
+
+// Use a temporary test user
+const user = { id: 'test-user', name: 'Test User' };
 
 const messagesDiv = document.getElementById("messages");
 const input = document.getElementById("userInput");
@@ -420,7 +424,7 @@ async function sendMessage() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: "meta-llama/llama-4-maverick-17b-128e-instruct",
+        model: "llama3-8b-8192",
         messages: apiMessages,
         temperature: 1,
         max_tokens: 2048,
