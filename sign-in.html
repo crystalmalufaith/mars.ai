@@ -16,7 +16,7 @@
     <p>Developed by Crystal Cabanatan</p>
   </div>
   <div class="main-container">
-  <div class="user-info" id="user-info">
+  <div class="user-info" id="user-info" style="display: none;">
     <h3 id="username"></h3>
     <button class="auth-btn" onclick="window.location.href='index.html'">Go to Home</button>
   </div>
@@ -34,7 +34,10 @@ let currentUser = null;
 function checkAuth() {
   const user = JSON.parse(localStorage.getItem('currentUser'));
   if (user) {
-    window.location.href = 'index.html';
+    // Show user info instead of redirecting immediately
+    document.getElementById('username').textContent = `Welcome back, ${user.name}!`;
+    document.getElementById('user-info').style.display = 'block';
+    document.getElementById('auth-forms').style.display = 'none';
   }
 }
 
