@@ -103,14 +103,10 @@
 </script>
 
 <script>
-// TEMPORARY: Bypass login for testing
-// const user = JSON.parse(localStorage.getItem('currentUser'));
-// if (!user) {
-//   window.location.href = 'sign-in.html';
-// }
-
-// Use a temporary test user
-const user = { id: 'test-user', name: 'Test User' };
+const user = JSON.parse(localStorage.getItem('currentUser'));
+if (!user) {
+  window.location.href = 'sign-in.html';
+}
 
 const messagesDiv = document.getElementById("messages");
 const input = document.getElementById("userInput");
