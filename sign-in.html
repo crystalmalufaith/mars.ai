@@ -16,24 +16,36 @@
     <p>Developed by Crystal Cabanatan</p>
   </div>
   <div class="main-container">
-  <div class="user-info" id="user-info" style="display: none;">
-    <h3 id="username"></h3>
-    <button class="auth-btn" onclick="window.location.href='index.html'">Go to Home</button>
-  </div>
+    <div class="user-info" id="user-info" style="display: none;">
+      <h3 id="username"></h3>
+      <button class="auth-btn" onclick="window.location.href='index.html'">Go to Home</button>
+    </div>
 
-  <div id="auth-forms">
-    <h2>Sign In</h2>
-    <div id="google-signin-btn"></div>
+    <div id="auth-forms">
+      <h2>Sign In</h2>
+      <div id="google-signin-btn"></div>
+    </div>
   </div>
-</div>
 
 <script>
 let currentUser = null;
+
+// Show message function
+function showMessage(message, type) {
+  // Simple alert for now, or you can implement a proper message display
+  alert(message);
+}
 
 // Check if user is already signed in
 function checkAuth() {
   const user = JSON.parse(localStorage.getItem('currentUser'));
   if (user) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirect = urlParams.get('redirect');
+    if (redirect) {
+      window.location.href = decodeURIComponent(redirect);
+      return;
+    }
     // Show user info instead of redirecting immediately
     document.getElementById('username').textContent = `Welcome back, ${user.name}!`;
     document.getElementById('user-info').style.display = 'block';
@@ -66,8 +78,10 @@ function handleCredentialResponse(response) {
   localStorage.setItem('currentUser', JSON.stringify(user));
   showMessage('Successfully signed in with Google!', 'success');
   setTimeout(() => {
-    window.location.href = 'index.html';
-  }, 1000);
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirect = urlParams.get('redirect');
+    window.location.href = redirect ? decodeURIComponent(redirect) : 'index.html';
+  }, 2000);
 }
 
 // Logout
