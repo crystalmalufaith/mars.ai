@@ -133,7 +133,6 @@ body:not(.sidebar-initialized) .sidebar {
     padding: 0;
     margin-left: 15px;
     margin-right: 20px;
-    margin-top: -3px;
     display: flex;
     flex-direction: column;
     animation: quizFormBounce 0.8s ease-out 0.1s both;
@@ -196,32 +195,30 @@ body.right-sidebar-open::before {
 }
 
 .sign-in-page .main-section {
-    justify-content: space-between;
+    position: relative;
+    padding-top: 20px;
+    align-items: center;
 }
 
 .left-panel {
-   text-align: center;
-   position: static;
-   font-size: clamp(0.8rem, 2vw, 1.2rem);
-   margin-top: 100px;
-   margin-left: 30px;
-   padding: 2rem;
-   color: #e0e0e0;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    padding: 1rem 0;
+    color: #e0e0e0;
 }
 
 .left-panel h1 {
-   font-size: clamp(1.5rem, 5vw, 3rem);
-   position: static;
-   margin-top: 100px;
-   margin-left: 30px;
-   margin-bottom: 0.5rem;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    margin-bottom: 0.5rem;
 }
 
 .left-panel p {
-   font-size: clamp(0.8rem, 2vw, 1.5rem);
-   position: static;
-   margin-left: 30px;
-   color: #b0b0b0;
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    color: #b0b0b0;
 }
 
 h1, h2, h3 {
@@ -269,6 +266,11 @@ h1, h2, h3 {
   #document-content {
     font-size: 10pt;
     line-height: 1.3;
+  }
+
+  .sign-in-page .main-container {
+      width: 400px;
+      min-height: auto;
   }
 }
 
@@ -1319,6 +1321,13 @@ h1, h2, h3 {
 }
 
 /* Sign-in Page */
+#auth-forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
 .user-info {
     text-align: center;
     background: rgba(26, 26, 26, 0.2);
@@ -1529,10 +1538,9 @@ h1, h2, h3 {
 }
 
 .sign-in-page .main-container {
-   height: auto;
-   min-height: 300px;
-   margin-left: 0;
-   margin-right: 60px;
+    width: 400px;
+    margin: 0 auto;
+    min-height: auto;
 }
 
 
